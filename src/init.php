@@ -154,7 +154,7 @@ trait base
     $this->set_setting($attribute, $value, $table);
   }
 
-  protected function human_date($date = '_nil_', $time = false, $format = 'Y-m-d', $month_names = false)
+  protected function human_date($date = '_nil_', $time = false, $format = 'm/d/Y', $month_names = false)
   {
     #\booosta\debug("date: $date");
     if($date === null) return null;
@@ -183,7 +183,7 @@ trait base
     if($month_names) $result = str_replace(array_keys($map), $map, $result);
 
     if($time == 'm') $format = ' H:i';
-    elseif($time == 's') $format = ' H:i:s';
+    elseif($time == 's' || $time === true) $format = ' H:i:s';
     else $format = null;
 
     if($format) $result .= date($format, strtotime(str_replace(' ', '', $date)));
