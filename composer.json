@@ -1,0 +1,23 @@
+{
+    "name": "booosta/tools",
+    "description": "Extra tools for Booosta PHP Framework",
+    "license": "LGPL-3.0-only",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "booosta\\tools\\": "src"
+        }
+    },
+    "authors": [
+        {
+            "name": "Peter Buzanits",
+            "email": "peter@icb.at"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=8.0.0",
+        "booosta/base": "dev-master",
+        "langleyfoxall/math_eval": "^2.0"
+    }
+}
