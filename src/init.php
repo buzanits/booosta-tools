@@ -160,7 +160,7 @@ trait base
     if($date === null) return null;
     if($date === '' || $date === '0000-00-00' || $date === '1970-01-01') return '';  // 1970 only for this project
     if($date == '_nil_') $date = date('Y-m-d');
-    $format = $blanks ? 'd. m. Y' : 'd.m.Y';
+    if(is_bool($format)) $format = $format ? 'd. m. Y' : 'd.m.Y';  // for backwards compatibility
 
     if($month_names):
       $map = ['Jan' => $this->t('January'), 
@@ -176,7 +176,7 @@ trait base
               'Nov' => $this->t('November'), 
               'Dec' => $this->t('December')];
               
-      if(is_bool($format)) $format = 'j. M Y';;  // for backwards compatibility
+      if(is_bool($format)) $format =  $format ? 'j. M Y' : 'J.M Y';;  // for backwards compatibility
     endif;
 
     $result = date($format, strtotime(str_replace(' ', '', $date)));
