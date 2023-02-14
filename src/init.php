@@ -1,16 +1,20 @@
 <?php
 namespace booosta\tools;
 
-#require 'vendor/autoload.php';
 include_once 'punycode.incl.php';
-\booosta\Framework::add_module_trait('base', 'tools\base');
+
+use \booosta\Framework as b;
+b::add_module_trait('base', 'tools\base');
 
 trait base
 {
   protected function get_opts_from_table($table, $showfield = 'name', $keyfield = 'id', $whereclause = null, $sort = 'a')
   {
+    $this->init_db();
+
     if($whereclause == '') $whereclause = '0=0';
     $rows = $this->DB->query_arrays("select `$keyfield`, `$showfield` from `$table` where $whereclause");
+    #b::debug($rows);
     $options = [];
     foreach($rows as $row) $options[$row[$keyfield]] = $row[$showfield];
   
