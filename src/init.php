@@ -158,12 +158,14 @@ trait base
     $this->set_setting($attribute, $value, $table);
   }
 
-  protected function human_date($date = '_nil_', $time = false, $format = 'm/d/Y', $month_names = false)
+  protected function human_date($date = '_nil_', $time = false, $format = null, $month_names = false)
   {
     #\booosta\debug("date: $date");
     if($date === null) return null;
     if($date === '' || $date === '0000-00-00' || $date === '1970-01-01') return '';  // 1970 only for this project
     if($date == '_nil_') $date = date('Y-m-d');
+
+    if($format === null) $format = $this->config('date_format') ?? 'm/d/Y';
     if(is_bool($format)) $format = $format ? 'd. m. Y' : 'd.m.Y';  // for backwards compatibility
 
     if($month_names):
