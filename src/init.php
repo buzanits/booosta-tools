@@ -13,7 +13,10 @@ trait base
     $this->init_db();
 
     if($whereclause == '') $whereclause = '0=0';
-    $rows = $this->DB->query_arrays("select `$keyfield`, `$showfield` from `$table` where $whereclause");
+    if($sort && $sort != 'a' && $sort != 'd') $orderclause = "order by $sort"; else $orderclause = '';
+
+    $rows = $this->DB->query_arrays("select `$keyfield`, `$showfield` from `$table` where $whereclause $orderclause");
+
     #b::debug($rows);
     $options = [];
     foreach($rows as $row) $options[$row[$keyfield]] = $row[$showfield];
