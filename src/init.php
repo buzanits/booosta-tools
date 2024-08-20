@@ -83,7 +83,7 @@ trait base
     $port = $_SERVER['SERVER_PORT'];
     $disp_port = ($protocol == 'http' && $port == 80 || $protocol == 'https' && $port == 443) ? '' : ":$port";
 
-    return "${protocol}://${domain}${disp_port}${base_url}${path}";
+    return "{$protocol}://{$domain}{$disp_port}{$base_url}{$path}";
   }
   
   protected function generate_password($size = 8, $min_c = 0, $min_C = 0, $min_n = 0, $min_s = 0)
